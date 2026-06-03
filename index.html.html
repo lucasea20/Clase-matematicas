@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrenamiento: Multiplicar en 2 filas</title>
+<style>
+  /* ===== Variables de color (consigna) ===== */
+  :root{
+    --verde:#2e7d32;    /* multiplicar */
+    --azul:#1565c0;     /* unidades */
+    --morado:#6a1b9a;   /* decenas */
+    --rojo:#c62828;     /* 0 de la segunda fila */
+    --naranjo:#e65100;  /* suma final */
+    --gris:#5f6368;     /* zona para guardar números */
+    --fondo:#f6f8fb;
+    --tarjeta:#ffffff;
+    --texto:#1f2933;
+    --borde:#e1e6ec;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--fondo);
+    color:var(--texto);
+    font-family:Verdana, Arial, system-ui, sans-serif;
+    line-height:1.5;
+    padding:16px;
+  }
+  .contenedor{max-width:820px;margin:0 auto;}
+
+  /* ===== Tarjetas ===== */
+  .card{
+    background:var(--tarjeta);
+    border:1px solid var(--borde);
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:22px;
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+  }
+  h1{font-size:1.7em;margin:.2em 0;}
+  h2{font-size:1.25em;margin:.2em 0 .6em;}
+  p{margin:.4em 0;}
+  .mini{font-size:.92em;color:#52606d;}
+
+  /* ===== Encabezado ===== */
+  .header{text-align:center;background:linear-gradient(180deg,#ffffff,#eef3fb);}
+  .sub{color:#52606d;font-size:1.05em;}
+  .badge{
+    display:inline-block;
+    margin-top:12px;
+    background:var(--verde);
+    color:#fff;
+    padding:10px 18px;
+    border-radius:999px;
+    font-weight:bold;
+    font-size:.95em;
+  }
+
+  /* ===== Leyenda de colores ===== */
+  .leyenda{display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{
+    flex:1 1 120px;
+    text-align:center;
+    color:#fff;
+    border-radius:12px;
+    padding:12px 8px;
+    font-weight:bold;
+    font-size:.95em;
+  }
+  .c-verde{background:var(--verde);}
+  .c-azul{background:var(--azul);}
+  .c-morado{background:var(--morado);}
+  .c-rojo{background:var(--rojo);}
+  .c-naranjo{background:var(--naranjo);}
+  .c-gris{background:var(--gris);}
+
+  /* ===== Pasos / auto-instrucciones ===== */
+  .pasos{padding-left:1.2em;margin:.4em 0;}
+  .pasos li{margin:6px 0;}
+  .frase{
+    margin-top:10px;
+    background:#fff4e5;
+    border-left:6px solid var(--naranjo);
+    padding:10px 14px;
+    border-radius:8px;
+    font-weight:bold;
+  }
+
+  /* ===== Bloque de operación (compacto, estilo cuaderno) ===== */
+  .op{
+    font-family:"Courier New", monospace;
+    font-size:1.5em;
+    font-weight:bold;
+    text-align:right;
+    width:120px;
+    margin:14px auto;
+    background:#fbfcfe;
+    border:1px dashed var(--borde);
+    border-radius:10px;
+    padding:8px 16px;
+    line-height:1.15;
+  }
+  .op .linea{white-space:nowrap;min-height:1.15em;}
+  .bar{border-top:3px solid var(--texto);margin:4px 0;}
+
+  /* colores dentro de la operación */
+  .t-verde{color:var(--verde);}
+  .t-azul{color:var(--azul);}
+  .t-morado{color:var(--morado);}
+  .t-rojo{color:var(--rojo);}
+  .t-naranjo{color:var(--naranjo);}
+
+  .nota-color{font-size:.85em;text-align:left;margin:4px 0;}
+
+  /* ===== Botones ===== */
+  .btn{
+    border:none;
+    border-radius:12px;
+    padding:14px 18px;
+    font-size:1em;
+    font-weight:bold;
+    color:#fff;
+    cursor:pointer;
+    margin:6px 6px 6px 0;
+    background:var(--azul);
+    transition:transform .08s ease, filter .15s ease;
+  }
+  .btn:hover{filter:brightness(1.08);}
+  .btn:active{transform:scale(.97);}
+  .btn.verde{background:var(--verde);}
+  .btn.morado{background:var(--morado);}
+  .btn.naranjo{background:var(--naranjo);}
+  .btn.rojo{background:var(--rojo);}
+  .btn.gris{background:var(--gris);}
+  .btn.suave{background:#fff;color:var(--azul);border:2px solid var(--azul);}
+
+  /* ===== Simulador ===== */
+  .sim-msg{
+    background:#eef5ff;
+    border:1px solid #cfe1ff;
+    border-radius:12px;
+    padding:12px 14px;
+    margin-top:12px;
+    font-size:1.02em;
+    min-height:40px;
+  }
+  .zona-guardados{
+    margin-top:12px;
+    background:#f1f3f4;
+    border:2px dashed var(--gris);
+    border-radius:12px;
+    padding:10px 14px;
+    color:var(--gris);
+    font-weight:bold;
+    text-align:center;
+    font-size:.95em;
+  }
+  .oculto{display:none;}
+  .marca{
+    background:#fff3b0;
+    border-radius:4px;
+    box-shadow:0 0 0 2px #f0c000;
+  }
+
+  /* ===== Ejercicios ===== */
+  .ejercicio{
+    border:1px solid var(--borde);
+    border-radius:14px;
+    padding:16px;
+    margin-bottom:14px;
+    background:#fbfcfe;
+  }
+  .recordatorio{
+    background:#eef9f0;
+    border-left:6px solid var(--verde);
+    padding:8px 12px;
+    border-radius:8px;
+    font-size:.92em;
+    margin:8px 0;
+  }
+  .respuesta{
+    margin-top:10px;
+    background:#fff;
+    border:2px solid var(--naranjo);
+    border-radius:10px;
+    padding:12px;
+  }
+  .alerta{
+    background:#fdecec;
+    border-left:6px solid var(--rojo);
+    padding:8px 12px;
+    border-radius:8px;
+    font-weight:bold;
+    font-size:.92em;
+    margin:8px 0;
+  }
+
+  /* ===== Pausa activa ===== */
+  .pausa{background:#fff8e1;border:1px solid #ffe0a3;}
+  .ok-pausa{
+    margin-top:10px;
+    color:var(--verde);
+    font-weight:bold;
+    font-size:1.05em;
+  }
+
+  /* ===== Cierre ===== */
+  .cierre{background:linear-gradient(180deg,#eef3fb,#ffffff);text-align:center;}
+  .regla{
+    display:inline-block;
+    text-align:left;
+    background:#fff;
+    border:2px solid var(--azul);
+    border-radius:12px;
+    padding:14px 20px;
+    margin-top:12px;
+    font-weight:bold;
+  }
+
+  @media (max-width:520px){
+    .op{font-size:1.35em;width:120px;padding:10px 12px;}
+    h1{font-size:1.4em;}
+  }
+</style>
+</head>
+<body>
+<div class="contenedor">
+
+  <!-- 1. Encabezado -->
+  <div class="card header">
+    <h1>🎯 Entrenamiento: Multiplicar en 2 filas</h1>
+    <p class="sub">No hacemos todo junto. Hacemos una fila a la vez.</p>
+    <span class="badge">🔵 Modo foco activado</span>
+  </div>
+
+  <!-- 2. Leyenda de colores -->
+  <div class="card">
+    <h2>Mis colores</h2>
+    <div class="leyenda">
+      <div class="chip c-verde">× multiplicar</div>
+      <div class="chip c-azul">unidades</div>
+      <div class="chip c-morado">decenas</div>
+      <div class="chip c-rojo">0 en segunda fila</div>
+      <div class="chip c-naranjo">suma final</div>
+      <div class="chip c-gris">zona de guardados</div>
+    </div>
+  </div>
+
+  <!-- 3. Auto-instrucciones -->
+  <div class="card">
+    <h2>Mis pasos (siempre visibles)</h2>
+    <ol class="pasos">
+      <li>Leo el ejercicio.</li>
+      <li>Marco unidades y decenas.</li>
+      <li>Hago la <span class="t-azul">primera fila (unidades)</span>.</li>
+      <li>Agrego el <span class="t-rojo">0 en la segunda fila</span> (porque ahora trabajo con decenas).</li>
+      <li>Hago la <span class="t-morado">segunda fila (decenas)</span>.</li>
+      <li>Sumo las dos filas.</li>
+      <li>Reviso con calma.</li>
+    </ol>
+    <div class="frase">Si me pierdo, vuelvo al paso 1.</div>
+  </div>
+
+  <!-- 3b. Errores que voy a revisar -->
+  <div class="card">
+    <h2>🔎 Errores que voy a revisar</h2>
+    <div class="recordatorio">Antes de mostrar la respuesta, reviso esto:</div>
+    <ul class="pasos">
+      <li>¿Agregué el 0 en la segunda fila?</li>
+      <li>¿Sumé el número que guardé?</li>
+      <li>¿Alineé bien las columnas?</li>
+      <li>¿Respondí lo que me preguntaban?</li>
+    </ul>
+  </div>
+
+  <!-- 4. Explicación del método -->
+  <div class="card">
+    <h2>Así se ve la multiplicación en 2 filas</h2>
+    <p class="mini">Ejemplo: <strong>24 × 13</strong></p>
+    <div class="recordatorio">El 3 está en las unidades y el 1 está en las decenas. Primero hago la primera fila con las unidades; después la segunda fila con las decenas.</div>
+    <div class="op">
+      <div class="linea">24</div>
+      <div class="linea"><span class="t-verde">×</span> <span class="t-morado">1</span><span class="t-azul">3</span></div>
+      <div class="bar"></div>
+      <div class="linea t-azul">72</div>
+      <div class="linea"><span class="t-morado">24</span><span class="t-rojo">0</span></div>
+      <div class="bar"></div>
+      <div class="linea t-naranjo">312</div>
+    </div>
+    <p class="nota-color">• Primera fila: multiplico por las <span class="t-azul">unidades</span> (el 3).</p>
+    <p class="nota-color">• La <span class="t-rojo">segunda fila parte con 0</span>, porque ya no son unidades: ahora trabajo con decenas.</p>
+    <p class="nota-color">• Segunda fila: la completo multiplicando por las <span class="t-morado">decenas</span> (el 1).</p>
+    <p class="nota-color">• Al final <span class="t-naranjo">sumo las dos filas</span>.</p>
+  </div>
+
+  <!-- 5. Simulador -->
+  <div class="card">
+    <h2>Simulador: 24 × 13</h2>
+    <div class="op">
+      <div class="linea">24</div>
+      <div class="linea"><span class="t-verde">×</span> <span id="sim-dec" class="t-morado">1</span><span id="sim-uni" class="t-azul">3</span></div>
+      <div class="bar"></div>
+      <div class="linea"><span id="sim-floor1" class="t-azul oculto">72</span></div>
+      <div class="linea"><span id="sim-floor2" class="t-morado oculto">24</span><span id="sim-guard" class="t-rojo oculto">0</span></div>
+      <div class="bar"></div>
+      <div class="linea"><span id="sim-sum" class="t-naranjo oculto">312</span></div>
+    </div>
+
+    <div class="sim-msg" id="sim-msg">Presiona “1. Marco unidades y decenas” para empezar. Una fila a la vez.</div>
+
+    <div class="zona-guardados">🗄️ Zona para guardar números: cuando digo “llevo 1” o “guardo 1”, lo escribo aquí y no lo dejo en mi cabeza. En este ejemplo no hay nada que guardar.</div>
+
+    <div style="margin-top:14px;">
+      <button class="btn azul" onclick="simStep(1)">1. Marco unidades y decenas</button>
+      <button class="btn azul" onclick="simStep(2)">2. Multiplico por unidades</button>
+      <button class="btn rojo" onclick="simStep(3)">3. Agrego el 0 en la segunda fila</button>
+      <button class="btn morado" onclick="simStep(4)">4. Completo la fila de decenas</button>
+      <button class="btn naranjo" onclick="simStep(5)">5. Sumo</button>
+      <button class="btn gris" onclick="simReset()">Reiniciar</button>
+    </div>
+  </div>
+
+  <!-- 6. Ejercicios de éxito rápido -->
+  <div class="card">
+    <h2>🚀 Calentamiento (éxito rápido)</h2>
+
+    <div class="ejercicio">
+      <div class="op">  12<br><span class="t-verde">×</span> 11</div>
+      <div class="recordatorio">Primero unidades, después decenas.</div>
+      <button class="btn suave" onclick="toggle('pista1')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('resp1')">Mostrar respuesta</button>
+      <div id="pista1" class="oculto recordatorio">Primera fila (unidades): 1 × 12 = 12. Segunda fila (decenas): parte con 0 y queda 120.</div>
+      <div id="resp1" class="oculto respuesta"><strong>12 × 11 = 132</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <div class="op">  21<br><span class="t-verde">×</span> 12</div>
+      <div class="recordatorio">Primero unidades, después decenas.</div>
+      <button class="btn suave" onclick="toggle('pista2')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('resp2')">Mostrar respuesta</button>
+      <div id="pista2" class="oculto recordatorio">Primera fila (unidades): 2 × 21 = 42. Segunda fila (decenas): parte con 0 y queda 210.</div>
+      <div id="resp2" class="oculto respuesta"><strong>21 × 12 = 252</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <div class="op">  32<br><span class="t-verde">×</span> 11</div>
+      <div class="recordatorio">Primero unidades, después decenas.</div>
+      <button class="btn suave" onclick="toggle('pista3')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('resp3')">Mostrar respuesta</button>
+      <div id="pista3" class="oculto recordatorio">Primera fila (unidades): 1 × 32 = 32. Segunda fila (decenas): parte con 0 y queda 320.</div>
+      <div id="resp3" class="oculto respuesta"><strong>32 × 11 = 352</strong></div>
+    </div>
+  </div>
+
+  <!-- 7. Ejercicios con números para guardar -->
+  <div class="card">
+    <h2>🧗 Nivel con guardados (suave)</h2>
+    <div class="recordatorio">Cuando guardo un número, lo escribo en la zona para guardar números, no en mi cabeza.</div>
+
+    <div class="ejercicio">
+      <div class="op">  24<br><span class="t-verde">×</span> 13</div>
+      <button class="btn suave" onclick="toggle('pistaA')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('solA')">Mostrar solución paso a paso</button>
+      <div id="pistaA" class="oculto recordatorio">Empieza por la primera fila, las unidades (3 × 24).</div>
+      <div id="solA" class="oculto respuesta">
+        <p><span class="t-azul">Primera fila (unidades):</span> 3 × 24 = 72</p>
+        <p><span class="t-rojo">Segunda fila:</span> parte con 0 porque ya no son unidades, y la completo con las <span class="t-morado">decenas</span> → 240</p>
+        <p><span class="t-naranjo">Sumo:</span> 72 + 240 = <strong>312</strong></p>
+      </div>
+    </div>
+
+    <div class="ejercicio">
+      <div class="op">  35<br><span class="t-verde">×</span> 12</div>
+      <button class="btn suave" onclick="toggle('pistaB')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('solB')">Mostrar solución paso a paso</button>
+      <div id="pistaB" class="oculto recordatorio">Empieza por la primera fila, las unidades (2 × 35).</div>
+      <div id="solB" class="oculto respuesta">
+        <p><span class="t-azul">Primera fila (unidades):</span> 2 × 35 = 70</p>
+        <p><span class="t-rojo">Segunda fila:</span> parte con 0 porque ya no son unidades, y la completo con las <span class="t-morado">decenas</span> → 350</p>
+        <p><span class="t-naranjo">Sumo:</span> 70 + 350 = <strong>420</strong></p>
+      </div>
+    </div>
+
+    <div class="ejercicio">
+      <div class="op">  46<br><span class="t-verde">×</span> 12</div>
+      <button class="btn suave" onclick="toggle('pistaC')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('solC')">Mostrar solución paso a paso</button>
+      <div id="pistaC" class="oculto recordatorio">Cuidado: la primera fila tiene un número para guardar. Anótalo en la zona para guardar números.</div>
+      <div id="solC" class="oculto respuesta">
+        <p><span class="t-azul">Primera fila (unidades), 2 × 46:</span></p>
+        <p>2 × 6 = 12 → escribo 2 y guardo 1 en la zona para guardar números. 🗄️</p>
+        <p>2 × 4 = 8, más el 1 que guardé = 9.</p>
+        <p>Primera fila: <strong>92</strong></p>
+        <p><span class="t-rojo">Segunda fila:</span> parte con 0 porque ya no son unidades, y la completo con las <span class="t-morado">decenas</span> → 460</p>
+        <p><span class="t-naranjo">Sumo:</span> 92 + 460 = <strong>552</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Pausa activa -->
+  <div class="card pausa">
+    <h2>⏸️ Pausa activa de 1 minuto</h2>
+    <ol class="pasos">
+      <li>Levántate.</li>
+      <li>Estira los brazos.</li>
+      <li>Toca la mesa 5 veces.</li>
+      <li>Respira profundo 3 veces.</li>
+      <li>Vuelve y revisa: ¿agregué el 0 en la segunda fila?</li>
+    </ol>
+    <button class="btn verde" onclick="pausaLista()">Listo, sigo con la misión</button>
+    <div id="pausa-ok" class="ok-pausa oculto">✅ Bien. Ahora seguimos con decimales y porcentajes.</div>
+  </div>
+
+  <!-- 9. Decimales como dinero -->
+  <div class="card">
+    <h2>💵 Decimales (como dinero)</h2>
+    <div class="recordatorio">Regla: primero ignoro la coma. Al final la devuelvo.</div>
+    <p><strong>2,4 × 12</strong></p>
+    <p class="mini">2,4 tiene 1 número después de la coma.</p>
+    <p>Ignoro la coma: <strong>24 × 12 = 288</strong></p>
+    <p>Devuelvo la coma 1 lugar: <strong>28,8</strong></p>
+    <p class="t-naranjo"><strong>2,4 × 12 = 28,8</strong></p>
+    <div class="alerta">Pregunta de revisión: ¿la coma volvió al final?</div>
+  </div>
+
+  <!-- 10. Porcentajes -->
+  <div class="card">
+    <h2>📊 Porcentajes de todos los días</h2>
+    <div class="recordatorio">En matemática, la palabra <strong>DE</strong> significa multiplicar.</div>
+    <p><strong>15% de 84</strong> = 84 × 15 ÷ 100</p>
+    <p class="mini">Es el mismo método de 2 filas: primero 84 × 15, después divido por 100.</p>
+    <p>84 × 15 = 1.260 → ÷ 100 = <span class="t-naranjo"><strong>12,6</strong></span></p>
+  </div>
+
+  <!-- 11. Problemas cotidianos -->
+  <div class="card">
+    <h2>🎮 Problemas de la vida real</h2>
+
+    <div class="ejercicio">
+      <h2>1. Videojuego</h2>
+      <p>Un pase de batalla cuesta $12.000 y tiene 15% de descuento.</p>
+      <p class="mini">Forma rápida: si descuentan 15%, pagas el 85%.</p>
+      <div class="alerta">No respondas todavía: subraya qué te preguntan.</div>
+      <button class="btn suave" onclick="toggle('pistaP1')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('solP1')">Mostrar solución</button>
+      <div id="pistaP1" class="oculto recordatorio">Pagas el 85% → 12.000 × 85 ÷ 100.</div>
+      <div id="solP1" class="oculto respuesta">
+        <p>12.000 × 85 ÷ 100 = 10.200</p>
+        <p class="t-naranjo"><strong>Paga $10.200.</strong></p>
+      </div>
+    </div>
+
+    <div class="ejercicio">
+      <h2>2. Ahorros</h2>
+      <p>Ahorras $2.500 cada semana durante 12 semanas.</p>
+      <p>Luego usas el 25% para comprar audífonos.</p>
+      <div class="alerta">No respondas todavía: subraya qué te preguntan.</div>
+      <button class="btn suave" onclick="toggle('pistaP2')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('solP2')">Mostrar solución</button>
+      <div id="pistaP2" class="oculto recordatorio">Primero el total, después el 25%, después resto.</div>
+      <div id="solP2" class="oculto respuesta">
+        <p>Ahorraste: 2.500 × 12 = 30.000</p>
+        <p>Gastaste: 25% de 30.000 = 7.500</p>
+        <p>Te quedó: 30.000 − 7.500 = 22.500</p>
+        <p class="t-naranjo"><strong>Le quedan $22.500.</strong></p>
+      </div>
+    </div>
+
+    <div class="ejercicio">
+      <h2>3. Batería del celular</h2>
+      <p>Tu celular tiene 84% de batería.</p>
+      <p>Juegas y consumes el 15% de esa batería.</p>
+      <div class="recordatorio">Ojo: no resto 15 directo. Primero calculo el 15% de 84.</div>
+      <div class="alerta">No respondas todavía: subraya qué te preguntan.</div>
+      <button class="btn suave" onclick="toggle('pistaP3')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('solP3')">Mostrar solución</button>
+      <div id="pistaP3" class="oculto recordatorio">15% de 84 → 84 × 15 ÷ 100. Después resto.</div>
+      <div id="solP3" class="oculto respuesta">
+        <p>Consumes: 84 × 15 ÷ 100 = 12,6</p>
+        <p>Queda: 84 − 12,6 = 71,4</p>
+        <p class="t-naranjo"><strong>Queda 71,4%.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. Cierre motivacional -->
+  <div class="card cierre">
+    <h2>🏁 Cierre</h2>
+    <p><strong>Hoy no aprendiste a hacerlo rápido. Aprendiste a no perderte.</strong></p>
+    <div class="regla">
+      Mi regla de oro:<br>
+      • Primero <span class="t-azul">unidades</span>.<br>
+      • Después agrego el <span class="t-rojo">0 en la segunda fila</span>.<br>
+      • Después <span class="t-morado">decenas</span>.<br>
+      • Al final <span class="t-naranjo">sumo</span>.
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Mostrar / ocultar pistas y respuestas
+  function toggle(id){
+    var el = document.getElementById(id);
+    el.classList.toggle('oculto');
+  }
+
+  // Marcar pausa activa como lista
+  function pausaLista(){
+    document.getElementById('pausa-ok').classList.remove('oculto');
+  }
+
+  // ===== Simulador 24 × 13 =====
+  var simMensajes = {
+    1: "El 3 está en las unidades y el 1 está en las decenas.",
+    2: "Primera fila: multiplico por las unidades. 3 × 24 = 72.",
+    3: "Ahora agrego el 0 en la segunda fila, porque ya no estoy trabajando con unidades.",
+    4: "Completo la segunda fila, que corresponde a las decenas. Queda 240.",
+    5: "Sumo las dos filas: 72 + 240 = 312."
+  };
+
+  function simStep(n){
+    document.getElementById('sim-msg').textContent = simMensajes[n];
+
+    if(n >= 1){
+      document.getElementById('sim-uni').classList.add('marca');
+      document.getElementById('sim-dec').classList.add('marca');
+    }
+    if(n >= 2){ document.getElementById('sim-floor1').classList.remove('oculto'); }
+    if(n >= 3){ document.getElementById('sim-guard').classList.remove('oculto'); }
+    if(n >= 4){ document.getElementById('sim-floor2').classList.remove('oculto'); }
+    if(n >= 5){ document.getElementById('sim-sum').classList.remove('oculto'); }
+  }
+
+  function simReset(){
+    document.getElementById('sim-msg').textContent = "Presiona “1. Marco unidades y decenas” para empezar. Una fila a la vez.";
+    document.getElementById('sim-uni').classList.remove('marca');
+    document.getElementById('sim-dec').classList.remove('marca');
+    document.getElementById('sim-floor1').classList.add('oculto');
+    document.getElementById('sim-guard').classList.add('oculto');
+    document.getElementById('sim-floor2').classList.add('oculto');
+    document.getElementById('sim-sum').classList.add('oculto');
+  }
+</script>
+</body>
+</html>
