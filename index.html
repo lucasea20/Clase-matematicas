@@ -223,6 +223,203 @@
     .op{font-size:1.35em;width:120px;padding:10px 12px;}
     h1{font-size:1.4em;}
   }
+
+  /* ===== Secciones de misión (9-19) ===== */
+  .mision-card{border-top:4px solid var(--azul);}
+  .mision-badge{
+    display:inline-block;
+    background:var(--azul);
+    color:#fff;
+    font-size:.82em;
+    font-weight:bold;
+    border-radius:999px;
+    padding:4px 14px;
+    margin-bottom:8px;
+    letter-spacing:.04em;
+  }
+
+  /* Pasos visuales */
+  .paso-bloque{
+    background:#f4f7fb;
+    border-radius:12px;
+    padding:14px 16px;
+    margin:12px 0;
+  }
+  .paso-fila{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin:8px 0;
+  }
+  .paso-num{
+    min-width:28px;
+    height:28px;
+    background:var(--azul);
+    color:#fff;
+    font-weight:bold;
+    font-size:.9em;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    margin-top:1px;
+  }
+
+  /* Freno de impulsividad */
+  .freno{
+    background:#fff8e1;
+    border-left:6px solid #f0c000;
+    padding:10px 14px;
+    border-radius:8px;
+    font-size:.93em;
+    margin:10px 0;
+    font-weight:bold;
+  }
+
+  /* Tarjetas flip decimal/fracción/% */
+  .tarjetas-trio{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    margin:14px 0;
+  }
+  .tarjeta-flip{
+    flex:1 1 100px;
+    min-height:90px;
+    border-radius:14px;
+    cursor:pointer;
+    position:relative;
+    font-size:1.3em;
+    font-weight:bold;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:var(--azul);
+    color:#fff;
+    border:3px solid var(--azul);
+    transition:background .2s, color .2s;
+    user-select:none;
+    padding:10px;
+  }
+  .tarjeta-flip .flip-front{ display:block; }
+  .tarjeta-flip .flip-back{ display:none; }
+  .tarjeta-flip.flipped{
+    background:#eef9f0;
+    color:var(--verde);
+    border-color:var(--verde);
+  }
+  .tarjeta-flip.flipped .flip-front{ display:none; }
+  .tarjeta-flip.flipped .flip-back{ display:block; }
+
+  /* Ejemplo trio 0,8 → 8/10 → 80% */
+  .ejemplo-trio{
+    background:#f4f7fb;
+    border-radius:12px;
+    padding:14px;
+    margin:12px 0;
+    text-align:center;
+  }
+  .trio-fila{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;}
+  .trio-item{
+    font-size:1.4em;
+    font-weight:bold;
+    padding:8px 14px;
+    background:#fff;
+    border-radius:10px;
+    border:2px solid var(--borde);
+  }
+  .trio-flecha{font-size:1.3em;color:var(--gris);}
+
+  /* Camino de descuentos */
+  .pasos-desc{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    margin:12px 0;
+    padding-left:8px;
+  }
+  .paso-desc-item{
+    background:#eef3fb;
+    border-radius:10px;
+    padding:10px 16px;
+    font-weight:bold;
+    font-size:.97em;
+    width:100%;
+    max-width:360px;
+  }
+  .paso-desc-flecha{
+    font-size:1.4em;
+    color:var(--azul);
+    padding:2px 0 2px 18px;
+  }
+
+  /* Tabla de potencias */
+  .tabla-potencias{
+    margin:12px 0;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid var(--borde);
+  }
+  .pot-fila{
+    display:grid;
+    grid-template-columns:80px 1fr 110px;
+    padding:10px 14px;
+    border-bottom:1px solid var(--borde);
+    font-size:.97em;
+  }
+  .pot-fila:last-child{border-bottom:none;}
+  .encabezado-pot{
+    background:var(--azul);
+    color:#fff;
+    font-weight:bold;
+  }
+  .pot-fila:nth-child(even){background:#f4f7fb;}
+
+  /* Tarjetas detective */
+  .tarjetas-detective{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(140px, 1fr));
+    gap:10px;
+    margin:12px 0;
+  }
+  .det-card{
+    border-radius:12px;
+    padding:12px 10px;
+    font-weight:bold;
+    font-size:.9em;
+    text-align:center;
+    color:#fff;
+    line-height:1.3;
+  }
+  .det-card span{font-weight:normal;font-size:.93em;display:block;margin-top:4px;}
+  .det-sumar{background:#1565c0;}
+  .det-restar{background:#c62828;}
+  .det-mult{background:#2e7d32;}
+  .det-div{background:#6a1b9a;}
+  .det-caja{background:#e65100;}
+
+  /* Botones de opción (detective y mixto) */
+  .opciones-det{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;}
+  .btn-op{
+    border:2px solid var(--borde);
+    border-radius:10px;
+    padding:10px 14px;
+    font-size:.95em;
+    font-weight:bold;
+    cursor:pointer;
+    background:#fff;
+    color:var(--texto);
+    transition:background .1s;
+  }
+  .btn-op:hover{background:#eef3fb;}
+
+  @media (max-width:520px){
+    .tarjetas-detective{grid-template-columns:repeat(2,1fr);}
+    .pot-fila{grid-template-columns:70px 1fr 90px;font-size:.87em;}
+  }
 </style>
 </head>
 <body>
@@ -413,106 +610,695 @@
     <div id="pausa-ok" class="ok-pausa oculto">✅ Bien. Ahora seguimos con decimales y porcentajes.</div>
   </div>
 
-  <!-- 9. Decimales como dinero -->
-  <div class="card">
-    <h2>💵 Decimales (como dinero)</h2>
-    <div class="recordatorio">Regla: primero ignoro la coma. Al final la devuelvo.</div>
-    <p><strong>2,4 × 12</strong></p>
-    <p class="mini">2,4 tiene 1 número después de la coma.</p>
-    <p>Ignoro la coma: <strong>24 × 12 = 288</strong></p>
-    <p>Devuelvo la coma 1 lugar: <strong>28,8</strong></p>
-    <p class="t-naranjo"><strong>2,4 × 12 = 28,8</strong></p>
-    <div class="alerta">Pregunta de revisión: ¿la coma volvió al final?</div>
-  </div>
+  <!-- 9. Decimales: la coma se guarda -->
+  <div class="card mision-card">
+    <div class="mision-badge">Misión 2</div>
+    <h2>🔢 Decimales: la coma se guarda</h2>
+    <div class="recordatorio">
+      La coma no se borra. La guardo.<br>
+      Primero multiplico como entero.<br>
+      Después devuelvo la coma contando desde la derecha.
+    </div>
 
-  <!-- 10. Porcentajes -->
-  <div class="card">
-    <h2>📊 Porcentajes de todos los días</h2>
-    <div class="recordatorio">En matemática, la palabra <strong>DE</strong> significa multiplicar.</div>
-    <p><strong>15% de 84</strong> = 84 × 15 ÷ 100</p>
-    <p class="mini">Es el mismo método de 2 filas: primero 84 × 15, después divido por 100.</p>
-    <p>84 × 15 = 1.260 → ÷ 100 = <span class="t-naranjo"><strong>12,6</strong></span></p>
-  </div>
+    <div class="paso-bloque">
+      <p><strong>Ejemplo: 2,4 × 12</strong></p>
+      <div class="paso-fila"><span class="paso-num">1</span><span>2,4 tiene <strong>1 número</strong> después de la coma. Guardo eso.</span></div>
+      <div class="paso-fila"><span class="paso-num">2</span><span>Multiplico como entero: <strong>24 × 12 = 288</strong></span></div>
+      <div class="paso-fila"><span class="paso-num">3</span><span>Devuelvo la coma <strong>1 lugar</strong> desde la derecha: <span class="t-naranjo"><strong>28,8</strong></span></span></div>
+    </div>
 
-  <!-- 11. Problemas cotidianos -->
-  <div class="card">
-    <h2>🎮 Problemas de la vida real</h2>
+    <div class="freno">
+      ⏸️ Antes de responder: ¿cuántos números había después de la coma? ¿desde dónde conté? ¿la respuesta tiene sentido?
+    </div>
+
+    <h2 style="margin-top:18px;">Ejercicios</h2>
 
     <div class="ejercicio">
-      <h2>1. Videojuego</h2>
-      <p>Un pase de batalla cuesta $12.000 y tiene 15% de descuento.</p>
-      <p class="mini">Forma rápida: si descuentan 15%, pagas el 85%.</p>
-      <div class="alerta">No respondas todavía: subraya qué te preguntan.</div>
-      <button class="btn suave" onclick="toggle('pistaP1')">Mostrar pista</button>
-      <button class="btn naranjo" onclick="toggle('solP1')">Mostrar solución</button>
-      <div id="pistaP1" class="oculto recordatorio">Pagas el 85% → 12.000 × 85 ÷ 100.</div>
-      <div id="solP1" class="oculto respuesta">
-        <p>12.000 × 85 ÷ 100 = 10.200</p>
-        <p class="t-naranjo"><strong>Paga $10.200.</strong></p>
+      <p><strong>4,3 × 5</strong></p>
+      <p class="mini">¿Cuántos decimales tiene 4,3?</p>
+      <button class="btn suave" onclick="toggle('d1p')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('d1s')">Mostrar solución</button>
+      <div id="d1p" class="oculto recordatorio">4,3 tiene 1 decimal. Multiplico 43 × 5 = 215. Devuelvo 1 lugar.</div>
+      <div id="d1s" class="oculto respuesta">43 × 5 = 215 → devuelvo la coma 1 lugar → <strong>21,5</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>2,15 × 13</strong></p>
+      <p class="mini">¿Cuántos decimales tiene 2,15?</p>
+      <button class="btn suave" onclick="toggle('d2p')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('d2s')">Mostrar solución</button>
+      <div id="d2p" class="oculto recordatorio">2,15 tiene 2 decimales. Multiplico 215 × 13. Devuelvo 2 lugares.</div>
+      <div id="d2s" class="oculto respuesta">215 × 13 = 2.795 → devuelvo la coma 2 lugares → <strong>27,95</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>1,09 × 2</strong></p>
+      <p class="mini">¿Cuántos decimales tiene 1,09?</p>
+      <button class="btn suave" onclick="toggle('d3p')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('d3s')">Mostrar solución</button>
+      <div id="d3p" class="oculto recordatorio">1,09 tiene 2 decimales. Multiplico 109 × 2. Devuelvo 2 lugares.</div>
+      <div id="d3s" class="oculto respuesta">109 × 2 = 218 → devuelvo la coma 2 lugares → <strong>2,18</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>3,04 × 4</strong></p>
+      <p class="mini">¿Cuántos decimales tiene 3,04?</p>
+      <button class="btn suave" onclick="toggle('d4p')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('d4s')">Mostrar solución</button>
+      <div id="d4p" class="oculto recordatorio">3,04 tiene 2 decimales. Multiplico 304 × 4. Devuelvo 2 lugares.</div>
+      <div id="d4s" class="oculto respuesta">304 × 4 = 1.216 → devuelvo la coma 2 lugares → <strong>12,16</strong></div>
+    </div>
+  </div>
+
+  <!-- 10. Decimal ↔ fracción ↔ porcentaje -->
+  <div class="card mision-card">
+    <div class="mision-badge">Misión 3</div>
+    <h2>🎭 La misma cantidad con tres disfraces</h2>
+    <p>Un número puede vestirse de decimal, de fracción o de porcentaje. Los tres dicen lo mismo.</p>
+
+    <div class="ejemplo-trio">
+      <div class="trio-fila">
+        <span class="trio-item t-azul">0,8</span>
+        <span class="trio-flecha">→</span>
+        <span class="trio-item t-morado">8/10</span>
+        <span class="trio-flecha">→</span>
+        <span class="trio-item t-naranjo">80%</span>
+      </div>
+    </div>
+
+    <div class="recordatorio">
+      🎽 Álbum del Mundial 2026: si una página tuviera 100 espacios y completaste 80, entonces completaste el <strong>80%</strong>. Eso es lo mismo que 0,8 o que 8/10.
+    </div>
+
+    <h2 style="margin-top:18px;">Tarjetas interactivas — tócalas</h2>
+    <p class="mini">Cada tarjeta muestra un decimal. Haz clic para ver sus otros dos disfraces.</p>
+
+    <div class="tarjetas-trio">
+      <div class="tarjeta-flip" onclick="flipCard(this)">
+        <div class="flip-front">0,5</div>
+        <div class="flip-back">1/2 = 50%</div>
+      </div>
+      <div class="tarjeta-flip" onclick="flipCard(this)">
+        <div class="flip-front">0,25</div>
+        <div class="flip-back">1/4 = 25%</div>
+      </div>
+      <div class="tarjeta-flip" onclick="flipCard(this)">
+        <div class="flip-front">0,8</div>
+        <div class="flip-back">8/10 = 80%</div>
+      </div>
+      <div class="tarjeta-flip" onclick="flipCard(this)">
+        <div class="flip-front">0,75</div>
+        <div class="flip-back">3/4 = 75%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. Porcentajes y descuentos -->
+  <div class="card mision-card">
+    <div class="mision-badge">Misión 4</div>
+    <h2>💰 Porcentajes y descuentos</h2>
+
+    <div class="recordatorio">
+      <strong>Porcentaje significa partes de 100.</strong><br>
+      15% significa 15 de cada 100.<br>
+      En matemática, la palabra <strong>DE</strong> muchas veces significa multiplicar.
+    </div>
+
+    <div class="paso-bloque">
+      <p><strong>15% de 84:</strong></p>
+      <div class="paso-fila"><span class="paso-num">1</span><span>84 × 15 = 1.260</span></div>
+      <div class="paso-fila"><span class="paso-num">2</span><span>1.260 ÷ 100 = <span class="t-naranjo"><strong>12,6</strong></span></span></div>
+    </div>
+
+    <h2 style="margin-top:18px;">Camino seguro para descuentos</h2>
+    <div class="pasos-desc">
+      <div class="paso-desc-item">① Precio inicial</div>
+      <div class="paso-desc-flecha">↓</div>
+      <div class="paso-desc-item">② Calculo la rebaja (% × precio ÷ 100)</div>
+      <div class="paso-desc-flecha">↓</div>
+      <div class="paso-desc-item">③ Resto la rebaja</div>
+      <div class="paso-desc-flecha">↓</div>
+      <div class="paso-desc-item t-naranjo">④ Precio final</div>
+    </div>
+
+    <div class="recordatorio" style="margin-top:12px;">
+      <strong>Atajo:</strong> si descuentan 15%, pagas el 85%. (100% − 15% = 85%)
+    </div>
+    <div class="alerta">⚠️ Ojo: descuento no es lo mismo que precio final.</div>
+
+    <div class="ejercicio">
+      <p>🎮 Pase de batalla de <strong>$12.000</strong> con <strong>15% de descuento</strong>. ¿Cuánto pagas?</p>
+      <button class="btn suave" onclick="toggle('p11a')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('s11a')">Mostrar solución</button>
+      <div id="p11a" class="oculto recordatorio">Pagas el 85% → 12.000 × 85 ÷ 100.</div>
+      <div id="s11a" class="oculto respuesta">
+        <p>Rebaja: 12.000 × 15 ÷ 100 = <strong>1.800</strong></p>
+        <p>Precio final: 12.000 − 1.800 = <span class="t-naranjo"><strong>$10.200</strong></span></p>
+        <p class="mini">Atajo: 12.000 × 85 ÷ 100 = $10.200 ✓</p>
       </div>
     </div>
 
     <div class="ejercicio">
-      <h2>2. Ahorros</h2>
-      <p>Ahorras $2.500 cada semana durante 12 semanas.</p>
-      <p>Luego usas el 25% para comprar audífonos.</p>
-      <div class="alerta">No respondas todavía: subraya qué te preguntan.</div>
-      <button class="btn suave" onclick="toggle('pistaP2')">Mostrar pista</button>
-      <button class="btn naranjo" onclick="toggle('solP2')">Mostrar solución</button>
-      <div id="pistaP2" class="oculto recordatorio">Primero el total, después el 25%, después resto.</div>
-      <div id="solP2" class="oculto respuesta">
-        <p>Ahorraste: 2.500 × 12 = 30.000</p>
-        <p>Gastaste: 25% de 30.000 = 7.500</p>
-        <p>Te quedó: 30.000 − 7.500 = 22.500</p>
-        <p class="t-naranjo"><strong>Le quedan $22.500.</strong></p>
+      <p>👟 Zapatillas de <strong>$75.000</strong> con <strong>30% de descuento</strong>. ¿Cuánto pagas?</p>
+      <button class="btn suave" onclick="toggle('p11b')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('s11b')">Mostrar solución</button>
+      <div id="p11b" class="oculto recordatorio">Pagas el 70% → 75.000 × 70 ÷ 100.</div>
+      <div id="s11b" class="oculto respuesta">
+        <p>Rebaja: 75.000 × 30 ÷ 100 = <strong>22.500</strong></p>
+        <p>Precio final: 75.000 − 22.500 = <span class="t-naranjo"><strong>$52.500</strong></span></p>
+        <p class="mini">Atajo: 75.000 × 70 ÷ 100 = $52.500 ✓</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:18px;">Trucos de porcentaje</h2>
+
+    <div class="ejercicio">
+      <p><strong>Caso 1 — ambos terminan en 0:</strong> 80% de 90</p>
+      <button class="btn suave" onclick="toggle('tc1')">Mostrar paso a paso</button>
+      <div id="tc1" class="oculto respuesta">
+        <p>80 × 90 ÷ 100</p>
+        <p>= <strong>8 × 9</strong> (saqué los dos ceros)</p>
+        <p>= <span class="t-naranjo"><strong>72</strong></span></p>
       </div>
     </div>
 
     <div class="ejercicio">
-      <h2>3. Batería del celular</h2>
-      <p>Tu celular tiene 84% de batería.</p>
-      <p>Juegas y consumes el 15% de esa batería.</p>
-      <div class="recordatorio">Ojo: no resto 15 directo. Primero calculo el 15% de 84.</div>
-      <div class="alerta">No respondas todavía: subraya qué te preguntan.</div>
-      <button class="btn suave" onclick="toggle('pistaP3')">Mostrar pista</button>
-      <button class="btn naranjo" onclick="toggle('solP3')">Mostrar solución</button>
-      <div id="pistaP3" class="oculto recordatorio">15% de 84 → 84 × 15 ÷ 100. Después resto.</div>
-      <div id="solP3" class="oculto respuesta">
-        <p>Consumes: 84 × 15 ÷ 100 = 12,6</p>
-        <p>Queda: 84 − 12,6 = 71,4</p>
-        <p class="t-naranjo"><strong>Queda 71,4%.</strong></p>
+      <p><strong>Caso 2 — solo el porcentaje termina en 0:</strong> 30% de 75</p>
+      <button class="btn suave" onclick="toggle('tc2')">Mostrar paso a paso</button>
+      <div id="tc2" class="oculto respuesta">
+        <p>Quito el 0 del 30: hago 3 × 75 = 225</p>
+        <p>Como quité solo un cero, muevo la coma 1 lugar:</p>
+        <p>= <span class="t-naranjo"><strong>22,5</strong></span></p>
+      </div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>Caso 3 — ninguno termina en 0:</strong> 63% de 47</p>
+      <button class="btn suave" onclick="toggle('tc3')">Mostrar paso a paso</button>
+      <div id="tc3" class="oculto respuesta">
+        <p>63 × 47 = 2.961</p>
+        <p>Porcentaje significa dividir por 100:</p>
+        <p>= <span class="t-naranjo"><strong>29,61</strong></span></p>
       </div>
     </div>
   </div>
 
-  <!-- 12. Cierre motivacional -->
+  <!-- 12. Fracciones con distinto denominador -->
+  <div class="card mision-card">
+    <div class="mision-badge">Misión 5</div>
+    <h2>🍕 No todos los pedazos tienen el mismo tamaño</h2>
+    <p>Para sumar fracciones, los pedazos tienen que tener el mismo nombre (mismo denominador).</p>
+
+    <div class="paso-bloque">
+      <p><strong>Ejemplo:</strong> Benjamín comió 3/5 de una pizza de jamón y 1/3 de otra pizza del mismo tamaño. ¿Cuánto comió en total?</p>
+      <div class="paso-fila"><span class="paso-num">1</span><span>No puedo sumar quintos con tercios directamente.</span></div>
+      <div class="paso-fila"><span class="paso-num">2</span><span>Busco denominador común: 5 × 3 = <strong>15</strong></span></div>
+      <div class="paso-fila"><span class="paso-num">3</span><span>3/5 = 9/15 (multipliqué arriba y abajo por 3)</span></div>
+      <div class="paso-fila"><span class="paso-num">4</span><span>1/3 = 5/15 (multipliqué arriba y abajo por 5)</span></div>
+      <div class="paso-fila"><span class="paso-num">5</span><span>9/15 + 5/15 = <span class="t-naranjo"><strong>14/15</strong></span></span></div>
+    </div>
+
+    <button class="btn rojo" onclick="toggle('frac-error')">Mostrar error común</button>
+    <div id="frac-error" class="oculto alerta">
+      ❌ 3/5 + 1/3 = 4/8 → ESTÁ MAL porque sumó numeradores Y denominadores por separado. Eso no funciona con fracciones. Primero hay que igualar el denominador.
+    </div>
+
+    <h2 style="margin-top:18px;">Ejercicios</h2>
+
+    <div class="ejercicio">
+      <p><strong>1/2 + 1/4</strong></p>
+      <button class="btn suave" onclick="toggle('fp1')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('fs1')">Mostrar solución</button>
+      <div id="fp1" class="oculto recordatorio">Denominador común: 4. Convierte 1/2 en ?/4.</div>
+      <div id="fs1" class="oculto respuesta">1/2 = 2/4 → 2/4 + 1/4 = <strong>3/4</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>2/3 + 1/6</strong></p>
+      <button class="btn suave" onclick="toggle('fp2')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('fs2')">Mostrar solución</button>
+      <div id="fp2" class="oculto recordatorio">Denominador común: 6. Convierte 2/3 en ?/6.</div>
+      <div id="fs2" class="oculto respuesta">2/3 = 4/6 → 4/6 + 1/6 = <strong>5/6</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>3/5 + 1/10</strong></p>
+      <button class="btn suave" onclick="toggle('fp3')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('fs3')">Mostrar solución</button>
+      <div id="fp3" class="oculto recordatorio">Denominador común: 10. Convierte 3/5 en ?/10.</div>
+      <div id="fs3" class="oculto respuesta">3/5 = 6/10 → 6/10 + 1/10 = <strong>7/10</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>5/8 + 1/2</strong></p>
+      <button class="btn suave" onclick="toggle('fp4')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('fs4')">Mostrar solución</button>
+      <div id="fp4" class="oculto recordatorio">Denominador común: 8. Convierte 1/2 en ?/8.</div>
+      <div id="fs4" class="oculto respuesta">1/2 = 4/8 → 5/8 + 4/8 = <strong>9/8</strong> (es más de una unidad entera)</div>
+    </div>
+  </div>
+
+  <!-- 13. Detective de operaciones -->
+  <div class="card mision-card">
+    <div class="mision-badge">Misión 6</div>
+    <h2>🕵️ Detective de operaciones</h2>
+    <p><strong>Antes de calcular, descubro la acción.</strong></p>
+
+    <div class="tarjetas-detective">
+      <div class="det-card det-sumar">Juntar<br><span>→ sumar</span></div>
+      <div class="det-card det-restar">Quitar<br><span>→ restar</span></div>
+      <div class="det-card det-mult">Repetir grupos<br><span>→ multiplicar</span></div>
+      <div class="det-card det-div">Repartir o cortar<br><span>→ dividir</span></div>
+      <div class="det-card det-mult">Parte de un total<br><span>→ multiplicar</span></div>
+      <div class="det-card det-caja">Número escondido<br><span>→ buscar la caja</span></div>
+    </div>
+
+    <div class="paso-bloque" style="margin-top:16px;">
+      <p><strong>Ejemplo:</strong> Una torta se divide en porciones de 1/8. Si hay 3 tortas, ¿cuántas porciones se obtienen?</p>
+      <div class="paso-fila"><span class="paso-num">🔍</span><span>Pregunta detective: ¿cuántos pedazos de 1/8 caben en 3 tortas?</span></div>
+      <div class="paso-fila"><span class="paso-num">→</span><span>Acción: repartir → <strong>dividir</strong></span></div>
+      <div class="paso-fila"><span class="paso-num">÷</span><span>3 ÷ 1/8 = 3 × 8 = <span class="t-naranjo"><strong>24 porciones</strong></span></span></div>
+    </div>
+
+    <div class="recordatorio">
+      También se puede ver así:<br>
+      1 torta = 8 porciones → 3 tortas = 3 × 8 = <strong>24 porciones</strong>
+    </div>
+
+    <h2 style="margin-top:18px;">Ejercicios detective — elige primero la operación</h2>
+
+    <div class="ejercicio">
+      <p>En un campeonato de fútbol, cada equipo juega 3 partidos en la fase de grupos. Si hay 8 equipos, ¿cuántos partidos se juegan en total entre todos?</p>
+      <div class="opciones-det" id="det1-ops">
+        <button class="btn-op" onclick="elegirOp('det1','sumar','mult')">Sumar</button>
+        <button class="btn-op" onclick="elegirOp('det1','restar','mult')">Restar</button>
+        <button class="btn-op correcto" onclick="elegirOp('det1','multiplicar','mult')">Multiplicar</button>
+        <button class="btn-op" onclick="elegirOp('det1','dividir','mult')">Dividir</button>
+      </div>
+      <div id="det1-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('det1sol')" style="margin-top:8px;">Mostrar solución</button>
+      <div id="det1sol" class="oculto respuesta">Repetir grupos → multiplicar. 8 × 3 = <strong>24 partidos</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p>Tienes $18.000 y quieres repartirlos en sobres iguales de $3.000. ¿Cuántos sobres puedes armar?</p>
+      <div class="opciones-det" id="det2-ops">
+        <button class="btn-op" onclick="elegirOp('det2','sumar','dividir')">Sumar</button>
+        <button class="btn-op" onclick="elegirOp('det2','restar','dividir')">Restar</button>
+        <button class="btn-op" onclick="elegirOp('det2','multiplicar','dividir')">Multiplicar</button>
+        <button class="btn-op correcto" onclick="elegirOp('det2','dividir','dividir')">Dividir</button>
+      </div>
+      <div id="det2-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('det2sol')" style="margin-top:8px;">Mostrar solución</button>
+      <div id="det2sol" class="oculto respuesta">Repartir → dividir. 18.000 ÷ 3.000 = <strong>6 sobres</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p>Un jugador de Minecraft tiene un cofre con 3/4 del espacio ocupado. Si el cofre completo tiene 64 casillas, ¿cuántas casillas tiene ocupadas?</p>
+      <div class="opciones-det" id="det3-ops">
+        <button class="btn-op" onclick="elegirOp('det3','sumar','multiplicar')">Sumar</button>
+        <button class="btn-op" onclick="elegirOp('det3','restar','multiplicar')">Restar</button>
+        <button class="btn-op correcto" onclick="elegirOp('det3','multiplicar','multiplicar')">Multiplicar</button>
+        <button class="btn-op" onclick="elegirOp('det3','dividir','multiplicar')">Dividir</button>
+      </div>
+      <div id="det3-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('det3sol')" style="margin-top:8px;">Mostrar solución</button>
+      <div id="det3sol" class="oculto respuesta">Parte de un total → multiplicar. 3/4 × 64 = <strong>48 casillas</strong></div>
+    </div>
+  </div>
+
+  <!-- 14. Fracción faltante -->
+  <div class="card mision-card">
+    <div class="mision-badge">Misión 7</div>
+    <h2>📦 La caja escondida</h2>
+    <p>Hay un número que falta. Mi trabajo es encontrarlo.</p>
+
+    <div class="paso-bloque">
+      <p><strong>Ejemplo: 3/4 × [ ] = 9/8</strong></p>
+      <div class="paso-fila"><span class="paso-num">👀</span><span>Miro arriba: 3 → 9. ¿Qué hice? Multipliqué por 3.</span></div>
+      <div class="paso-fila"><span class="paso-num">👀</span><span>Miro abajo: 4 → 8. ¿Qué hice? Multipliqué por 2.</span></div>
+      <div class="paso-fila"><span class="paso-num">📦</span><span>Entonces la caja es <span class="t-naranjo"><strong>3/2</strong></span></span></div>
+      <div class="paso-fila"><span class="paso-num">✅</span><span>Comprobación: 3/4 × 3/2 = 9/8 ✓</span></div>
+    </div>
+
+    <button class="btn morado" onclick="toggle('frac-avanzado')">Mostrar método avanzado</button>
+    <div id="frac-avanzado" class="oculto respuesta">
+      <p>3/4 × x = 9/8</p>
+      <p>x = 9/8 ÷ 3/4</p>
+      <p>x = 9/8 × 4/3 (cuando divido por una fracción, invierto y multiplico)</p>
+      <p>x = 36/24 = <strong>3/2</strong></p>
+    </div>
+
+    <h2 style="margin-top:18px;">Ejercicios</h2>
+
+    <div class="ejercicio">
+      <p><strong>1/2 × [ ] = 3/4</strong></p>
+      <button class="btn suave" onclick="toggle('cf1p')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('cf1s')">Mostrar solución</button>
+      <div id="cf1p" class="oculto recordatorio">Arriba: 1 → 3 (×3). Abajo: 2 → 4 (×2).</div>
+      <div id="cf1s" class="oculto respuesta">La caja es <strong>3/2</strong>. Comprobación: 1/2 × 3/2 = 3/4 ✓</div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>2/3 × [ ] = 8/9</strong></p>
+      <button class="btn suave" onclick="toggle('cf2p')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('cf2s')">Mostrar solución</button>
+      <div id="cf2p" class="oculto recordatorio">Arriba: 2 → 8 (×4). Abajo: 3 → 9 (×3).</div>
+      <div id="cf2s" class="oculto respuesta">La caja es <strong>4/3</strong>. Comprobación: 2/3 × 4/3 = 8/9 ✓</div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>2/5 × [ ] = 6/20</strong></p>
+      <button class="btn suave" onclick="toggle('cf3p')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('cf3s')">Mostrar solución</button>
+      <div id="cf3p" class="oculto recordatorio">Arriba: 2 → 6 (×3). Abajo: 5 → 20 (×4).</div>
+      <div id="cf3s" class="oculto respuesta">La caja es <strong>3/4</strong>. Comprobación: 2/5 × 3/4 = 6/20 ✓</div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>4/5 × [ ] = 12/15</strong></p>
+      <button class="btn suave" onclick="toggle('cf4p')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('cf4s')">Mostrar solución</button>
+      <div id="cf4p" class="oculto recordatorio">Arriba: 4 → 12 (×3). Abajo: 5 → 15 (×3).</div>
+      <div id="cf4s" class="oculto respuesta">La caja es <strong>3/3 = 1</strong>. Comprobación: 4/5 × 3/3 = 12/15 ✓</div>
+    </div>
+  </div>
+
+  <!-- 15. Potencias de base 10 -->
+  <div class="card mision-card">
+    <div class="mision-badge">Misión 8</div>
+    <h2>⚡ Potencias de base 10: el contador de ceros</h2>
+
+    <div class="recordatorio">
+      Una potencia de base 10 me dice <strong>cuántas veces aparece el 10 multiplicando</strong>.<br><br>
+      ⚠️ <strong>10² no significa 10 × 2. Significa 10 × 10.</strong>
+    </div>
+
+    <div class="tabla-potencias">
+      <div class="pot-fila encabezado-pot">
+        <span>Potencia</span><span>Significado</span><span>Resultado</span>
+      </div>
+      <div class="pot-fila"><span>10¹</span><span>10</span><span>10</span></div>
+      <div class="pot-fila"><span>10²</span><span>10 × 10</span><span>100</span></div>
+      <div class="pot-fila"><span>10³</span><span>10 × 10 × 10</span><span>1.000</span></div>
+      <div class="pot-fila"><span>10⁴</span><span>10 × 10 × 10 × 10</span><span>10.000</span></div>
+      <div class="pot-fila"><span>10⁵</span><span>10 × 10 × 10 × 10 × 10</span><span>100.000</span></div>
+      <div class="pot-fila"><span>10⁶</span><span>10 × 10 × 10 × 10 × 10 × 10</span><span>1.000.000</span></div>
+    </div>
+
+    <div class="recordatorio" style="margin-top:12px;">
+      🎮 Un servidor de Minecraft registra 10⁵ bloques cargados. 10⁵ = 100.000.
+    </div>
+
+    <h2 style="margin-top:18px;">Ejercicios</h2>
+
+    <div class="ejercicio">
+      <p><strong>10² = ____</strong></p>
+      <button class="btn naranjo" onclick="toggle('pot1s')">Mostrar respuesta</button>
+      <div id="pot1s" class="oculto respuesta">10 × 10 = <strong>100</strong></div>
+    </div>
+    <div class="ejercicio">
+      <p><strong>10³ = ____</strong></p>
+      <button class="btn naranjo" onclick="toggle('pot2s')">Mostrar respuesta</button>
+      <div id="pot2s" class="oculto respuesta">10 × 10 × 10 = <strong>1.000</strong></div>
+    </div>
+    <div class="ejercicio">
+      <p><strong>10⁵ = ____</strong></p>
+      <button class="btn naranjo" onclick="toggle('pot3s')">Mostrar respuesta</button>
+      <div id="pot3s" class="oculto respuesta">10 × 10 × 10 × 10 × 10 = <strong>100.000</strong></div>
+    </div>
+    <div class="ejercicio">
+      <p><strong>10⁶ = ____</strong></p>
+      <button class="btn naranjo" onclick="toggle('pot4s')">Mostrar respuesta</button>
+      <div id="pot4s" class="oculto respuesta">10 × 10 × 10 × 10 × 10 × 10 = <strong>1.000.000</strong></div>
+    </div>
+
+    <div class="alerta">❌ Detector: "10³ = 30" está <strong>MAL</strong> porque 10³ = 10 × 10 × 10 = 1.000. No es 10 × 3.</div>
+  </div>
+
+  <!-- 16. Notación científica -->
+  <div class="card mision-card">
+    <div class="mision-badge">Misión 9</div>
+    <h2>🚀 Notación científica: números gigantes en versión corta</h2>
+    <p>Sirve para escribir números muy grandes de forma más corta.</p>
+
+    <div class="recordatorio">
+      <strong>Forma:</strong> número entre 1 y 10 × potencia de 10<br>
+      El primer número siempre debe quedar entre 1 y 10.
+    </div>
+
+    <div class="paso-bloque">
+      <p><strong>Ejemplo 1: 3.000.000</strong></p>
+      <div class="paso-fila"><span class="paso-num">1</span><span>3.000.000 = 3 × 1.000.000</span></div>
+      <div class="paso-fila"><span class="paso-num">2</span><span>1.000.000 = 10⁶</span></div>
+      <div class="paso-fila"><span class="paso-num">✅</span><span>3.000.000 = <span class="t-naranjo"><strong>3 × 10⁶</strong></span></span></div>
+    </div>
+
+    <div class="paso-bloque" style="margin-top:12px;">
+      <p><strong>Ejemplo 2: 45.000.000</strong></p>
+      <div class="paso-fila"><span class="paso-num">1</span><span>Dejo un número entre 1 y 10: <strong>4,5</strong></span></div>
+      <div class="paso-fila"><span class="paso-num">2</span><span>Cuento los saltos de la coma: 7 lugares</span></div>
+      <div class="paso-fila"><span class="paso-num">✅</span><span>45.000.000 = <span class="t-naranjo"><strong>4,5 × 10⁷</strong></span></span></div>
+    </div>
+
+    <div class="recordatorio">
+      🎽 El Mundial 2026 imprimió 2.500.000 láminas = <strong>2,5 × 10⁶</strong>
+    </div>
+
+    <div class="freno">
+      ⏸️ Antes de responder: ¿mi primer número quedó entre 1 y 10? ¿conté bien los saltos? ¿el exponente coincide?
+    </div>
+
+    <h2 style="margin-top:18px;">Ejercicios</h2>
+
+    <div class="ejercicio">
+      <p><strong>6.000 = ____ × 10^____</strong></p>
+      <button class="btn suave" onclick="toggle('nc1p')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('nc1s')">Mostrar respuesta</button>
+      <div id="nc1p" class="oculto recordatorio">¿Cuántos ceros tiene 6.000? ¿qué número entre 1 y 10 queda?</div>
+      <div id="nc1s" class="oculto respuesta"><strong>6 × 10³</strong> (6.000 = 6 × 1.000 = 6 × 10³)</div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>80.000 = ____ × 10^____</strong></p>
+      <button class="btn suave" onclick="toggle('nc2p')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('nc2s')">Mostrar respuesta</button>
+      <div id="nc2p" class="oculto recordatorio">80.000 → primer número: 8. Saltos: 4.</div>
+      <div id="nc2s" class="oculto respuesta"><strong>8 × 10⁴</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>2.500.000 = ____ × 10^____</strong></p>
+      <button class="btn suave" onclick="toggle('nc3p')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('nc3s')">Mostrar respuesta</button>
+      <div id="nc3p" class="oculto recordatorio">Primer número entre 1 y 10: 2,5. Saltos de la coma: 6.</div>
+      <div id="nc3s" class="oculto respuesta"><strong>2,5 × 10⁶</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>45.000.000 = ____ × 10^____</strong></p>
+      <button class="btn suave" onclick="toggle('nc4p')">Mostrar pista</button>
+      <button class="btn naranjo" onclick="toggle('nc4s')">Mostrar respuesta</button>
+      <div id="nc4p" class="oculto recordatorio">Primer número: 4,5. Saltos: 7.</div>
+      <div id="nc4s" class="oculto respuesta"><strong>4,5 × 10⁷</strong></div>
+    </div>
+
+    <div class="alerta">❌ Detector: "45.000.000 = 45 × 10⁶" está <strong>MAL</strong>. El 45 no está entre 1 y 10. Debe ser 4,5 × 10⁷.</div>
+  </div>
+
+  <!-- 17. Entrenamiento mixto tipo prueba -->
+  <div class="card mision-card">
+    <div class="mision-badge">Misión 10</div>
+    <h2>🏆 Entrenamiento mixto tipo prueba</h2>
+    <p><strong>Antes de calcular, elige la acción.</strong> No respondas de inmediato.</p>
+
+    <div class="ejercicio">
+      <p><strong>1.</strong> 3/7 + 1/4</p>
+      <div class="opciones-det">
+        <button class="btn-op correcto" onclick="elegirOp('mix1','denominador común','denominador común')">Denominador común</button>
+        <button class="btn-op" onclick="elegirOp('mix1','sumar directo','denominador común')">Sumar directo</button>
+        <button class="btn-op" onclick="elegirOp('mix1','multiplicar','denominador común')">Multiplicar</button>
+      </div>
+      <div id="mix1-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('mix1sol')">Mostrar solución</button>
+      <div id="mix1sol" class="oculto respuesta">DCM = 28. 3/7 = 12/28. 1/4 = 7/28. 12/28 + 7/28 = <strong>19/28</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>2.</strong> 30% de $75.000</p>
+      <div class="opciones-det">
+        <button class="btn-op" onclick="elegirOp('mix2','restar','multiplicar')">Restar</button>
+        <button class="btn-op correcto" onclick="elegirOp('mix2','multiplicar','multiplicar')">Multiplicar (parte de un total)</button>
+        <button class="btn-op" onclick="elegirOp('mix2','dividir','multiplicar')">Dividir</button>
+      </div>
+      <div id="mix2-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('mix2sol')">Mostrar solución</button>
+      <div id="mix2sol" class="oculto respuesta">75.000 × 30 ÷ 100 = <strong>$22.500</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>3.</strong> 3 ÷ 1/8</p>
+      <div class="opciones-det">
+        <button class="btn-op" onclick="elegirOp('mix3','multiplicar directo','dividir fracción')">Multiplicar directo</button>
+        <button class="btn-op correcto" onclick="elegirOp('mix3','dividir fracción','dividir fracción')">Dividir (repartir)</button>
+        <button class="btn-op" onclick="elegirOp('mix3','sumar','dividir fracción')">Sumar</button>
+      </div>
+      <div id="mix3-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('mix3sol')">Mostrar solución</button>
+      <div id="mix3sol" class="oculto respuesta">3 ÷ 1/8 = 3 × 8 = <strong>24</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>4.</strong> 3/4 × [ ] = 9/8</p>
+      <div class="opciones-det">
+        <button class="btn-op" onclick="elegirOp('mix4','sumar','caja')">Sumar</button>
+        <button class="btn-op" onclick="elegirOp('mix4','dividir','caja')">Dividir</button>
+        <button class="btn-op correcto" onclick="elegirOp('mix4','caja','caja')">Buscar la caja</button>
+      </div>
+      <div id="mix4-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('mix4sol')">Mostrar solución</button>
+      <div id="mix4sol" class="oculto respuesta">3→9 (×3), 4→8 (×2). Caja = <strong>3/2</strong>. Comprobación: 3/4 × 3/2 = 9/8 ✓</div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>5.</strong> 2,15 × 13</p>
+      <div class="opciones-det">
+        <button class="btn-op" onclick="elegirOp('mix5','dividir','coma decimal')">Dividir</button>
+        <button class="btn-op correcto" onclick="elegirOp('mix5','coma decimal','coma decimal')">Multiplicar (guardar coma)</button>
+        <button class="btn-op" onclick="elegirOp('mix5','sumar','coma decimal')">Sumar</button>
+      </div>
+      <div id="mix5-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('mix5sol')">Mostrar solución</button>
+      <div id="mix5sol" class="oculto respuesta">215 × 13 = 2.795 → devuelvo 2 decimales → <strong>27,95</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>6.</strong> ¿Cuánto es 10⁵?</p>
+      <div class="opciones-det">
+        <button class="btn-op" onclick="elegirOp('mix6','10x5','potencia')">10 × 5 = 50</button>
+        <button class="btn-op correcto" onclick="elegirOp('mix6','potencia','potencia')">10 × 10 × 10 × 10 × 10</button>
+        <button class="btn-op" onclick="elegirOp('mix6','5ceros','potencia')">Pongo 5 ceros sin el 1</button>
+      </div>
+      <div id="mix6-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('mix6sol')">Mostrar solución</button>
+      <div id="mix6sol" class="oculto respuesta">10⁵ = 10 × 10 × 10 × 10 × 10 = <strong>100.000</strong></div>
+    </div>
+
+    <div class="ejercicio">
+      <p><strong>7.</strong> 2.500.000 en notación científica</p>
+      <div class="opciones-det">
+        <button class="btn-op" onclick="elegirOp('mix7','25x10','2.5x10')">25 × 10⁵</button>
+        <button class="btn-op correcto" onclick="elegirOp('mix7','2.5x10','2.5x10')">2,5 × 10⁶</button>
+        <button class="btn-op" onclick="elegirOp('mix7','2.5x107','2.5x10')">2,5 × 10⁷</button>
+      </div>
+      <div id="mix7-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('mix7sol')">Mostrar solución</button>
+      <div id="mix7sol" class="oculto respuesta">Primer número entre 1 y 10: 2,5. Saltos: 6. → <strong>2,5 × 10⁶</strong></div>
+    </div>
+  </div>
+
+  <!-- 18. Detector de errores -->
+  <div class="card mision-card">
+    <div class="mision-badge">Misión 11</div>
+    <h2>🔍 Detector de errores</h2>
+    <p>No calcules. Solo detecta qué está mal y por qué.</p>
+
+    <div class="ejercicio">
+      <p>¿Está correcto? <strong>2,4 × 12 = 288</strong></p>
+      <div class="opciones-det">
+        <button class="btn-op" onclick="errorOp('err1','correcto','incorrecto')">✅ Correcto</button>
+        <button class="btn-op correcto" onclick="errorOp('err1','incorrecto','incorrecto')">❌ Incorrecto</button>
+      </div>
+      <div id="err1-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('err1exp')">Ver explicación</button>
+      <div id="err1exp" class="oculto respuesta">❌ Faltó devolver la coma. 24 × 12 = 288, pero hay 1 decimal, entonces el resultado es <strong>28,8</strong>.</div>
+    </div>
+
+    <div class="ejercicio">
+      <p>¿Está correcto? <strong>3/7 + 1/4 = 3/28</strong></p>
+      <div class="opciones-det">
+        <button class="btn-op" onclick="errorOp('err2','correcto','incorrecto')">✅ Correcto</button>
+        <button class="btn-op correcto" onclick="errorOp('err2','incorrecto','incorrecto')">❌ Incorrecto</button>
+      </div>
+      <div id="err2-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('err2exp')">Ver explicación</button>
+      <div id="err2exp" class="oculto respuesta">❌ Sumó fracciones como si multiplicara (multiplicó los denominadores). El denominador común es 28, pero los numeradores hay que convertirlos: 3/7 = 12/28, 1/4 = 7/28. Resultado correcto: <strong>19/28</strong>.</div>
+    </div>
+
+    <div class="ejercicio">
+      <p>¿Está correcto? <strong>30% de 75 = 225</strong></p>
+      <div class="opciones-det">
+        <button class="btn-op" onclick="errorOp('err3','correcto','incorrecto')">✅ Correcto</button>
+        <button class="btn-op correcto" onclick="errorOp('err3','incorrecto','incorrecto')">❌ Incorrecto</button>
+      </div>
+      <div id="err3-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('err3exp')">Ver explicación</button>
+      <div id="err3exp" class="oculto respuesta">❌ Faltó mover la coma. 3 × 75 = 225, pero como quitó un cero del 30, hay que mover la coma 1 lugar. Resultado correcto: <strong>22,5</strong>.</div>
+    </div>
+
+    <div class="ejercicio">
+      <p>¿Está correcto? <strong>15% de 84 = 84 − 15</strong></p>
+      <div class="opciones-det">
+        <button class="btn-op" onclick="errorOp('err4','correcto','incorrecto')">✅ Correcto</button>
+        <button class="btn-op correcto" onclick="errorOp('err4','incorrecto','incorrecto')">❌ Incorrecto</button>
+      </div>
+      <div id="err4-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('err4exp')">Ver explicación</button>
+      <div id="err4exp" class="oculto respuesta">❌ Confundió porcentaje con resta directa. 15% de 84 = 84 × 15 ÷ 100 = <strong>12,6</strong>. No es 84 − 15 = 69.</div>
+    </div>
+
+    <div class="ejercicio">
+      <p>¿Está correcto? <strong>10³ = 30</strong></p>
+      <div class="opciones-det">
+        <button class="btn-op" onclick="errorOp('err5','correcto','incorrecto')">✅ Correcto</button>
+        <button class="btn-op correcto" onclick="errorOp('err5','incorrecto','incorrecto')">❌ Incorrecto</button>
+      </div>
+      <div id="err5-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('err5exp')">Ver explicación</button>
+      <div id="err5exp" class="oculto respuesta">❌ Confundió potencia con multiplicación. 10³ = 10 × 10 × 10 = <strong>1.000</strong>. No es 10 × 3 = 30.</div>
+    </div>
+
+    <div class="ejercicio">
+      <p>¿Está correcto? <strong>45.000.000 = 45 × 10⁶</strong></p>
+      <div class="opciones-det">
+        <button class="btn-op" onclick="errorOp('err6','correcto','incorrecto')">✅ Correcto</button>
+        <button class="btn-op correcto" onclick="errorOp('err6','incorrecto','incorrecto')">❌ Incorrecto</button>
+      </div>
+      <div id="err6-fb" class="oculto recordatorio"></div>
+      <button class="btn naranjo" onclick="toggle('err6exp')">Ver explicación</button>
+      <div id="err6exp" class="oculto respuesta">❌ El 45 no está entre 1 y 10. En notación científica el primer número debe ser entre 1 y 10. Correcto: <strong>4,5 × 10⁷</strong>.</div>
+    </div>
+  </div>
+
+  <!-- 19. Cierre general -->
   <div class="card cierre">
     <h2>🏁 Cierre</h2>
     <p><strong>Hoy no aprendiste a hacerlo rápido. Aprendiste a no perderte.</strong></p>
     <div class="regla">
-      Mi regla de oro:<br>
-      • Primero <span class="t-azul">unidades</span>.<br>
-      • Después agrego el <span class="t-rojo">0 en la segunda fila</span>.<br>
-      • Después <span class="t-morado">decenas</span>.<br>
-      • Al final <span class="t-naranjo">sumo</span>.
+      📌 Mis reglas de oro:<br><br>
+      • <span class="t-azul">Multiplicación:</span> primero unidades, después decenas.<br>
+      • <span class="t-naranjo">Decimales:</span> guardo la coma y la devuelvo.<br>
+      • <span class="t-morado">Porcentaje:</span> pienso en partes de 100.<br>
+      • <span class="t-verde">Fracciones:</span> si los pedazos son distintos, busco denominador común.<br>
+      • <span class="t-rojo">Problemas:</span> antes de calcular, descubro la acción.<br>
+      • ⚡ <strong>Potencias de 10:</strong> el exponente cuenta ceros.<br>
+      • 🚀 <strong>Notación científica:</strong> comprimo números grandes con ×10.
     </div>
   </div>
 
 </div>
 
 <script>
-  // Mostrar / ocultar pistas y respuestas
+  // ===== Funciones existentes — NO MODIFICAR =====
   function toggle(id){
     var el = document.getElementById(id);
     el.classList.toggle('oculto');
   }
 
-  // Marcar pausa activa como lista
   function pausaLista(){
     document.getElementById('pausa-ok').classList.remove('oculto');
   }
 
-  // ===== Simulador 24 × 13 =====
   var simMensajes = {
     1: "El 3 está en las unidades y el 1 está en las decenas.",
     2: "Primera fila: multiplico por las unidades. 3 × 24 = 72.",
@@ -523,7 +1309,6 @@
 
   function simStep(n){
     document.getElementById('sim-msg').textContent = simMensajes[n];
-
     if(n >= 1){
       document.getElementById('sim-uni').classList.add('marca');
       document.getElementById('sim-dec').classList.add('marca');
@@ -535,13 +1320,47 @@
   }
 
   function simReset(){
-    document.getElementById('sim-msg').textContent = "Presiona “1. Marco unidades y decenas” para empezar. Una fila a la vez.";
+    document.getElementById('sim-msg').textContent = "Presiona «1. Marco unidades y decenas» para empezar. Una fila a la vez.";
     document.getElementById('sim-uni').classList.remove('marca');
     document.getElementById('sim-dec').classList.remove('marca');
     document.getElementById('sim-floor1').classList.add('oculto');
     document.getElementById('sim-guard').classList.add('oculto');
     document.getElementById('sim-floor2').classList.add('oculto');
     document.getElementById('sim-sum').classList.add('oculto');
+  }
+
+  // ===== Nuevas funciones =====
+
+  function flipCard(el){
+    el.classList.toggle('flipped');
+  }
+
+  function elegirOp(prefix, elegida, correcta){
+    var fb = document.getElementById(prefix + '-fb');
+    fb.classList.remove('oculto');
+    if(elegida === correcta){
+      fb.style.background = '#eef9f0';
+      fb.style.borderColor = 'var(--verde)';
+      fb.textContent = '✅ ¡Correcto! Esa es la acción.';
+    } else {
+      fb.style.background = '#fdecec';
+      fb.style.borderColor = 'var(--rojo)';
+      fb.textContent = '❌ No es esa. Revisa las tarjetas detective y vuelve a intentarlo.';
+    }
+  }
+
+  function errorOp(prefix, elegida, correcta){
+    var fb = document.getElementById(prefix + '-fb');
+    fb.classList.remove('oculto');
+    if(elegida === correcta){
+      fb.style.background = '#eef9f0';
+      fb.style.borderColor = 'var(--verde)';
+      fb.textContent = '✅ ¡Bien detectado! Hay un error. Mira la explicación.';
+    } else {
+      fb.style.background = '#fdecec';
+      fb.style.borderColor = 'var(--rojo)';
+      fb.textContent = '❌ Hay un error ahí. Mira la explicación para verlo.';
+    }
   }
 </script>
 </body>
